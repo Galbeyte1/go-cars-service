@@ -8,8 +8,8 @@ type App struct {}
 
 func (app *App) Run() error {
 	fmt.Println("Running Application...")
-	var err error
-	return err
+
+	return nil
 }
 
 func main() {
