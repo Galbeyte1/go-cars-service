@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a9870451-9d83-4500-94a3-c7b2e58be13b",
+		"_postman_id": "1b7a2eb5-3713-457f-b9f4-a548ac55c055",
 		"name": "Car Requests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "28480704"
@@ -36,7 +36,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "JHK290Xj"
 						}
 					]
 				}
@@ -81,7 +81,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\n}",
+					"raw": "    {\n        \"ID\": \"abcdefg\",\n        \"Make\": \"Honda\",\n        \"Model\": \"Civic\",\n        \"Package\": \"Premium\",\n        \"Color\": \"Black\",\n        \"Year\": \"2023\",\n        \"Category\": \"Sedan\",\n        \"Mileage\": 1000,\n        \"Price\": 30000\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -101,7 +101,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "3"
+							"value": "abcdefg"
 						}
 					]
 				}
@@ -115,7 +115,12 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \n}"
+					"raw": "{\n    \"ID\": \"abcdefg\",\n    \"Make\": \"Honda\",\n    \"Model\": \"Civic\",\n    \"Package\": \"Premium\",\n    \"Color\": \"Black\",\n    \"Year\": \"2023\",\n    \"Category\": \"Sedan\",\n    \"Mileage\": 0,\n    \"Price\": 30000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
 					"raw": "{{host}}/api/car/",
