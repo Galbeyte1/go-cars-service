@@ -6,12 +6,12 @@ import (
 	"net/http"
 
 	"github.com/Galbeyte1/go-cars-service/internal/car"
+	"github.com/gorilla/mux"
 )
 
 // Handler - stores pointer to our Car Service
 type Handler struct {
-	// Router *mux.Router
-	Router http.ServeMux
+	Router *mux.Router
 	// For comfortablility, adds method based routes
 	// and path variables
 	Service *car.Service
@@ -33,7 +33,7 @@ func NewHandler(service *car.Service) *Handler {
 // SetupRoutes - sets up all the routes for our application
 func (h *Handler) SetupRoutes() {
 	fmt.Println("Setting up routes")
-	h.Router = *http.NewServeMux()
+	h.Router = mux.NewRouter()
 
 	h.Router.HandleFunc("/api/health", func (w http.ResponseWriter, r *http.Request)  {
 		if err := sendOkResponse(w, Response{Message: "I am alive!"}); err != nil {
