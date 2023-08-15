@@ -35,7 +35,8 @@ func (h *Handler) SetupRoutes() {
 	fmt.Println("Setting up routes")
 	h.Router = mux.NewRouter()
 
-	h.Router.HandleFunc("/api/health", func (w http.ResponseWriter, r *http.Request)  {
+	// Health Check Endpoint
+	h.Router.HandleFunc("/api/health", func(w http.ResponseWriter, r *http.Request) {
 		if err := sendOkResponse(w, Response{Message: "I am alive!"}); err != nil {
 			panic(err)
 		}
