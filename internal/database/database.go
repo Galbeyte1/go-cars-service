@@ -5,6 +5,6 @@ import (
 )
 
 func NewDatabase() map[string]car.Car {
-	db := make(map[string]car.Car)
+	db := PopulateDB()
 	return db
 }
