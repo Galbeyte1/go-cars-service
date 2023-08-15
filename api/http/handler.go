@@ -41,6 +41,32 @@ func (h *Handler) SetupRoutes() {
 			panic(err)
 		}
 	})
+
+	h.Router.HandleFunc("/api/car/{id}", h.GetCar).Methods("GET")
+	h.Router.HandleFunc("/api/car/", h.PostCar).Methods("POST")
+	h.Router.HandleFunc("/api/car/{id}", h.UpdateCar).Methods("PUT")
+	h.Router.HandleFunc("/api/car/", h.GetAllCars).Methods("GET")
+
+}
+
+// GetCar - retrieve a car by ID
+func (h *Handler) GetCar(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("GetCar Endpoint Hit!")
+}
+
+// GetAllCars - retrieve all cars
+func (h *Handler) GetAllCars(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("GetAllCars Endpoint Hit!")
+}
+
+// PostCar - add a new car
+func (h *Handler) PostCar(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("PostCar Endpoint Hit!")
+}
+
+// UpdateCar - updates a car by ID
+func (h *Handler) UpdateCar(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("UpdateCar Endpoint Hit!")
 }
 
 
