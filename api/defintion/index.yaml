@@ -1,65 +1,126 @@
 openapi: '3.0.0'
 info:
   version: '1.0.0'
-  title: 'Sample API'
-  description: Buy or rent spacecrafts
+  title: 'Go Car API'
+  description: Manage Cars
+  servers:
+    - url: http://localhost:8080/api/
 
 paths:
-  /api/car/{id}:
+  /car/{id}:
     parameters:
-      - name: spacecraftId
-        description: The unique identifier of the spacecraft
+      - name: id
+        description: The unique identifier of the car
         in: path
         required: true
-        schema:
-          $ref: '#/components/schemas/SpacecraftId'
     get:
-      summary: Read a spacecraft
+      summary: Get Car by ID
       responses:
         '200':
-          description: The spacecraft corresponding to the provided `spacecraftId`
+          description: Get the car corresponding to the provided `id`
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Spacecraft'
-        404:
-          description: No spacecraft found for the provided `spacecraftId`
+                $ref: '#/components/schemas/Car'
+        '404':
+          description: No car found for the provided `id`
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        500:
+        '500':
           description: Unexpected error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+    put:
+      summary: Update Car by ID
+      responses:
+        '200':
+          description: Update the car corresponding to the provided `id`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Car'
+        '404':
+          description: No car found for the provided `id`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'                
+    post:
+      summary: Add Car
+      responses:
+        '200':
+          description: The car
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Car'
+        '404':
+          description: Unable to add car
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
 components:
   schemas:
-    SpacecraftId:
-      description: The unique identifier of a spacecraft
+    id:
+      description: The unique identifier of a car
       type: string
-    Spacecraft:
+    Make:
+      description: Make of the car
+      type: string
+    Model:
+      description: Model of the car
+      type: string
+    Package:
+      description: Package of the car
+      type: string
+    Color:
+      description: Color of the car
+      type: string
+    Year:
+      description: Year of the car
+      type: string
+    Category:
+      description: Category of the car
+      type: string
+    Mileage:
+      description: Number of miles on the car
+      type: uint
+    Price:
+      description: Price of the car
+      type: uint
+    
+    Car:
       type: object
       required:
         - id
-        - name
-        - type
-      properties:
-        id:
-          $ref: '#/components/schemas/SpacecraftId'
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-            - capsule
-            - probe
-            - satellite
-            - spaceplane
-            - station
-        description:
-          type: string
+        - Make
+        - Model
+        - Package
+        - Color
+        - Year
+        - Category
+        - Mileage
+        - Price
+      
+
     Error:
       type: object
       required:
@@ -68,10 +129,3 @@ components:
         message:
           description: A human readable error message
           type: string
-  securitySchemes:
-    ApiKey:
-      type: apiKey
-      in: header
-      name: X-Api-Key
-security:
-  - ApiKey: []
